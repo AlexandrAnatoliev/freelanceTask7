@@ -17,8 +17,7 @@
 bone_values_list = [1, 2, 3, 4, 5, 6]  # возможные значения кости
 dropped_values_list = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # возможные суммы выпавших значений двух костей
 
-# число комбинаций двух костей дающих заданное возможное значение суммы
-
+# число комбинаций двух костей, дающих заданное возможное значение суммы
 combination_count_list = []  # список с числом комбинаций
 for i in range(len(dropped_values_list)):
     combination_count = 0  # число комбинаций, например: '2'='1'+'1' => 1
@@ -28,5 +27,8 @@ for i in range(len(dropped_values_list)):
                 combination_count += 1
     combination_count_list.append(combination_count)
 
-print(combination_count_list)
-
+# Распределение X (множество возможных значений и соответствующие вероятности).
+x_out = {}  # словарь "распределение X"
+for i, value in enumerate(dropped_values_list):
+    x_out[value] = float(combination_count_list[i] / 36)
+print(x_out)
