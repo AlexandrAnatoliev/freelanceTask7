@@ -31,4 +31,27 @@ for i in range(len(dropped_values_list)):
 x_out = {}  # словарь "распределение X"
 for i, value in enumerate(dropped_values_list):
     x_out[value] = float(combination_count_list[i] / 36)
+
 print(x_out)
+
+# Проверяем ответ, оценив вероятность с помощью метода Монте-Карло
+import numpy
+from numpy import random
+
+
+def dice():
+    # функция выдает случайное число от 1 до 6 включительно
+    return random.randint(1, 7)
+
+
+def diceroll(number_of_times):
+    # Вводишь количество бросков двух кубиков, и получаешь распределение: "число очков:число выпавших случаев"
+    counter = {n: 0 for n in range(2, 13)}  # Словарь-счетчик. Все ключи изначально = 0
+    for i in range(number_of_times):
+        first_dice = dice()
+        second_dice = dice()
+        total = first_dice + second_dice
+        counter[total] += 1  # при выпадении определенного количества очков, счетчик с таким ключом увеличивается
+    return counter
+
+print(diceroll(100))
