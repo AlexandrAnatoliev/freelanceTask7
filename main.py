@@ -32,8 +32,6 @@ x_out = {}  # словарь "распределение X"
 for i, value in enumerate(dropped_values_list):
     x_out[value] = float(combination_count_list[i] / 36)
 
-print(x_out)
-
 # Проверяем ответ, оценив вероятность с помощью метода Монте-Карло
 import numpy
 from numpy import random
@@ -54,4 +52,10 @@ def diceroll(number_of_times):
         counter[total] += 1  # при выпадении определенного количества очков, счетчик с таким ключом увеличивается
     return counter
 
-print(diceroll(100))
+
+print("Игральная кость независимо бросается два раза. X - сумма выпавших значений.")
+print("Распределение X (множество возможных значений и соответствующие вероятности): \n", x_out)
+print("Для проверки ответа оценим вероятность с помощью метода Монте-Карло. ")
+number_of_throw = int(input("Введите количество бросков костей: "))
+
+print(diceroll(number_of_throw))
